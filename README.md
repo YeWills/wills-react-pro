@@ -1,43 +1,39 @@
-# react-boilerplate-pro
+# wills-react-pro
+react前端工程项目
 
-Inspired by [Ant Design Pro](https://pro.ant.design/).
+工程项目分几个阶段
+先起一个简单页面
+首先搞定webpack
+- 基础配置
+- 代码模块分割
+- eslint配置
+- jest配置
+- hot reloader
+逐渐展开
 
-Non-opinionated React Admin System boilerplate integrated with decentralized composable features.
+心路历程：
+刚开始着手做项目，无从开始
+先从配置webpack开始，
+先写一个简单页面，
+将上面配置写好后
+然后再深入前端技术栈
+redux 封装
+ajax 封装
+router 封装
+懒加载
+预加载
 
-## Features
-* :globe_with_meridians: **Internationalization**: [react-intl-context](https://github.com/AlanWei/react-intl-context)
-* :lock: **Access control list**: [react-acl-router](https://github.com/AlanWei/react-acl-router)
-* :memo: **Nested menu**: [react-sider](https://github.com/AlanWei/react-sider)
+明天先参照 之前写的webpack-code项目，配置基础的，并做笔记。
+目前的想法是，先写一个简单的页面，不考虑react技术的页面，让webpack运行起来，
+然后按上面的步骤，展开。
 
-## Usage
-```bash
-$ git clone https://github.com/AlanWei/react-boilerplate-pro.git
-$ cd react-boilerplate-pro
-$ yarn install
-$ yarn mock:server    # start mock data server at http://localhost:3000, npm run mock:server also works
-$ yarn dev            # start webpack-dev-server in another terminal window at http://localhost:8080, npm run dev also works
+认识到 这些 webpack 入门 ：
 ```
-
-## Login Credentials
-* Admin: username `admin` & password `123`, authorities is `'admin'`
-* User: username `user` & password `123`, authorities is `'user'`
-
-## 启动：
-同时执行：
+"scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js"
+  },
 ```
-yarn mock:server
-yarn dev
-```
-## build 编译
-通过编译出来的文件，请加一个相对路径；这样就可以使用webstorm 启动起来了：
-例如： <link rel="preload" href="./assets/css/1.52e5b7e0.css"  as="style">
-原来是 <link rel="preload" href="assets/css/1.52e5b7e0.css"  as="style">
-并且把这个标签给删除：<base href="/">
-用webstorm打开时，请再根目录下，启动 yarn mock:server 服务
+**webpack-dev-server --config webpack.dev.js**
 
-以下是作者自己封装的框架
-- https://github.com/AlanWei/react-boilerplate-pro
-- https://github.com/AlanWei/react-sider
-- https://github.com/AlanWei/react-acl-router
-- https://github.com/AlanWei/react-intl-context
-
+前期不考虑使用koa进行中转；
+前期先做不考虑跨域问题的配置工程；
