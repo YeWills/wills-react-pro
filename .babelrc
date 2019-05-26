@@ -2,7 +2,7 @@
   "sourceMaps": true,
   "presets": [
     "env",
-    "react"
+    // "react"
   ],
   "plugins": [
     "syntax-dynamic-import",
@@ -10,10 +10,6 @@
     "transform-object-rest-spread",
     ["module-resolver", {
       "root": ["./src"]
-    }],
-    ["import", {
-      "libraryName": "antd",
-      "libraryDirectory": "es"
     }]
   ]
 }
