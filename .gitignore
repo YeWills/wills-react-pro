@@ -13,3 +13,4 @@ public/
 dist
 .idea
 .svn
+yarn.lock

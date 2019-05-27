@@ -2,7 +2,7 @@
   "sourceMaps": true,
   "presets": [
     "env",
-    // "react"
+    "react"
   ],
   "plugins": [
     "syntax-dynamic-import",

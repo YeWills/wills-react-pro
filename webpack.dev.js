@@ -1,6 +1,7 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common');
+const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const AutoDllPlugin = require('autodll-webpack-plugin');
 
@@ -51,7 +52,13 @@ let devConfig = {
               sourceMap: true
             }
           },
-          'postcss-loader', 
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
+              sourceMap: true,
+            },
+          }, 
           {
             loader: 'sass-loader',
             options: {
