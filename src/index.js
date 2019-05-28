@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './views/home/Home';
 import {store} from './redux/store';
 import { Provider } from 'react-redux';
+import Router from './router';
+import 'antd/dist/antd.css';
+
+
 
 ReactDOM.render(
     <Provider store={store}>
-      <Home/>
+      <Router />
     </Provider>,
     document.getElementById('root')
     );
