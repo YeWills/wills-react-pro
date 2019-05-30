@@ -11,12 +11,12 @@ import './index.scss';
 // import {messages,buildConfig, } from '../../app/config/buildConfig';
 
 const propTypes = {
-  prefixCls: PropTypes.string,
-  intl: PropTypes.object.isRequired,
-  errorMsg: PropTypes.string.isRequired,
-  isLogin: PropTypes.bool.isRequired,
-  loginUser: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  // prefixCls: PropTypes.string,
+  // intl: PropTypes.object.isRequired,
+  // errorMsg: PropTypes.string.isRequired,
+  // isLogin: PropTypes.bool.isRequired,
+  // loginUser: PropTypes.func.isRequired,
+  // history: PropTypes.object.isRequired,
 };
 
 const defaultProps = {
@@ -80,16 +80,16 @@ class Login extends Component {
         <div className={`${prefixCls}-appInfo`}>
           <img className={`${prefixCls}-appLogo`} src={logo} alt="logo" />
           <span className={`${prefixCls}-appName`}>
-            {intl.formatMessage({ id: 'appName' })}
+            登陆
           </span>
         </div>
         <div className={`${prefixCls}-appDesc`}>
-          {intl.formatMessage({ id: 'login_appDesc' })}
+        登陆
         </div>
         <Input
           className={`${prefixCls}-loginInput`}
           style={{ height: 40, marginBottom: 24 }}
-          placeholder={intl.formatMessage({ id: 'login_usernameInput_placeholder' })}
+          placeholder={"登陆"}
           type="text"
           prefix={<Icon type="user" style={{ color: 'rgba(0, 0, 0, .25)' }} />}
           value={username}
@@ -99,7 +99,6 @@ class Login extends Component {
         />
         <Input
           className={`${prefixCls}-loginInput`}
-          placeholder={intl.formatMessage({ id: 'login_passwordInput_placeholder' })}
           type="password"
           prefix={<Icon type="lock" style={{ color: 'rgba(0, 0, 0, .25)' }} />}
           value={password}
@@ -111,7 +110,7 @@ class Login extends Component {
           type="primary"
           onClick={this.handleLogin}
         >
-          {intl.formatMessage({ id: 'login_login_btn' })}
+          ok
         </Button>
         <div>
           {this.renderErrorMsg()}
@@ -122,14 +121,14 @@ class Login extends Component {
 
   renderIntlSwitch = () => {
     const { prefixCls, intl ,history} = this.props;
-    const { locale } = buildConfig;
+    // const { locale } = buildConfig;
 
     return (
       <div className={`${prefixCls}-intlSwitch`}>
         <span
           className={classnames({
             [`${prefixCls}-intlItem`]: true,
-            [`${prefixCls}-intlItem-active`]: intl.locale === 'en-us',
+            // [`${prefixCls}-intlItem-active`]: intl.locale === 'en-us',
           })}
           onClick={() => this.updateLocale('en-us')}
           role="presentation"
@@ -142,7 +141,7 @@ class Login extends Component {
         <span
           className={classnames({
             [`${prefixCls}-intlItem`]: true,
-            [`${prefixCls}-intlItem-active`]: intl.locale === 'zh-cn',
+            // [`${prefixCls}-intlItem-active`]: intl.locale === 'zh-cn',
           })}
           onClick={() => this.updateLocale('zh-cn')}
           role="presentation"
@@ -173,8 +172,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLogin: state.app.isLogin,
-  errorMsg: state.app.loginErrorMsg,
+  // isLogin: state.app.isLogin,
+  // errorMsg: state.app.loginErrorMsg,
 });
 
 //查看connect源码，mapDispatchToProps 一般接收函数，但也可以接收对象，并在对象中传递dispatch，
