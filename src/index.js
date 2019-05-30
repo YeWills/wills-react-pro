@@ -1,15 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import {store} from './redux/store';
-import { Provider } from 'react-redux';
-import Router from './router';
 import 'antd/dist/antd.css';
+import { createApp } from './app';
 
 
+const App = createApp(store)
 
-ReactDOM.render(
-    <Provider store={store}>
-      <Router />
-    </Provider>,
-    document.getElementById('root')
-    );
+ReactDOM.render(App, document.getElementById('root'));

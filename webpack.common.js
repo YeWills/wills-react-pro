@@ -6,9 +6,13 @@ module.exports = {
   entry: './src/index.js',
   resolve: {
     alias: { 
-      '@': path.resolve(__dirname, 'src/')
+      'layouts': path.resolve(__dirname, 'src/layouts'),
+      'styles': path.resolve(__dirname, 'src/styles'),
+      'src-acl-router': path.resolve(__dirname, 'src/src-acl-router'),
+      'assets': path.resolve(__dirname, 'src/assets'),
+      'app': path.resolve(__dirname, 'src/app'),
     },
-    extensions: [".js", ".vue", ".json"]
+    extensions: [".js", ".jsx", ".scss"]
   },
   externals: {  
     jquery: 'jQuery',

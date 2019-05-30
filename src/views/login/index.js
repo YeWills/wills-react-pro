@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { withRouter } from 'react-router-dom';
-// import { injectIntl } from 'react-intl-context';
-import { injectIntl } from 'src-intl-context';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 import { Input, Icon, Button } from 'antd';
-import appAction from 'app/action';
+// import appAction from 'app/action';
 import logo from 'assets/logo.svg';
 import './index.scss';
-import {messages,buildConfig, } from '../../app/config/buildConfig';
+// import {messages,buildConfig, } from '../../app/config/buildConfig';
 
 const propTypes = {
   prefixCls: PropTypes.string,
@@ -182,7 +180,7 @@ const mapStateToProps = state => ({
 //查看connect源码，mapDispatchToProps 一般接收函数，但也可以接收对象，并在对象中传递dispatch，
 //当mapDispatchToProps为对象时，执行 this.props.loginUser() 会执行 appAction.loginUser()() ,主意哦，是两次()()！！
 const mapDispatchToProps = {
-  loginUser: appAction.loginUser,
+  // loginUser: appAction.loginUser,
 };
 
 const Acv = ({aaa})=>{
@@ -196,4 +194,4 @@ Login.defaultProps = defaultProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRouter(injectIntl(Login)));
+)(withRouter(Login));

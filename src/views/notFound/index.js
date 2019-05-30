@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-// import { injectIntl } from 'react-intl-context';
-import { injectIntl } from 'src-intl-context';
 import { Button } from 'antd';
 import './index.scss';
 
@@ -33,4 +31,4 @@ class NotFound extends Component {
 }
 
 NotFound.propTypes = propTypes;
-export default injectIntl(NotFound);
+export default NotFound;

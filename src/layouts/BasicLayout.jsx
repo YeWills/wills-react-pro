@@ -14,9 +14,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 // import { injectIntl } from 'react-intl-context';
-import { injectIntl } from 'src-intl-context';
 import { Link } from 'react-router-dom';
-import { matchRoutes } from 'react-router-config';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import head from 'lodash/head';
@@ -24,7 +22,7 @@ import isEmpty from 'lodash/isEmpty';
 import { Avatar, Dropdown, Menu, Icon, Breadcrumb, Popover } from 'antd';
 // import Sider from 'react-sider';
 import Sider from 'sider/index';
-import 'react-sider/lib/index.css';
+// import 'react-sider/lib/index.css';
 //menuData 定义侧边栏菜单的目录
 import menuData from 'app/config/menu';
 //combineRoutes 所有路由（含鉴权的和不鉴权的---需要权限登陆才能显示的和不需要权限显示的）
@@ -261,37 +259,37 @@ class BasicLayout extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const pathname = get(state, 'router.location.pathname', '');
-    // console.log(state)
-    // console.log(pathname)
-    // console.log(combineRoutes)
-  const abc = matchRoutes(combineRoutes, pathname)
-    // console.log(abc)
-    // console.log(JSON.stringify(abc))
-    const o2 = [{
-        "route": {
-            "path": "/outlets",
-            "exact": true,
-            "permissions": ["admin", "user"],
-            "pageTitle": "pageTitle_outlets",
-            "breadcrumb": ["/outlets"]
-        }, "match": {"path": "/outlets", "url": "/outlets", "isExact": true, "params": {}}
-    }]
-  const { route } = head(abc);
-    const obj1 = {
-        "path": "/outlets",
-        "exact": true,
-        "permissions": ["admin", "user"],
-        "pageTitle": "pageTitle_outlets",
-        "breadcrumb": ["/outlets"]
-    }
-  return {
-    isLogin: state.app.isLogin,
-    user: state.app.user,
-    route,
-    notices: state.app.notices,
-    notification: state.app.notification,
-  };
+  // const pathname = get(state, 'router.location.pathname', '');
+  //   // console.log(state)
+  //   // console.log(pathname)
+  //   // console.log(combineRoutes)
+  // const abc = matchRoutes(combineRoutes, pathname)
+  //   // console.log(abc)
+  //   // console.log(JSON.stringify(abc))
+  //   const o2 = [{
+  //       "route": {
+  //           "path": "/outlets",
+  //           "exact": true,
+  //           "permissions": ["admin", "user"],
+  //           "pageTitle": "pageTitle_outlets",
+  //           "breadcrumb": ["/outlets"]
+  //       }, "match": {"path": "/outlets", "url": "/outlets", "isExact": true, "params": {}}
+  //   }]
+  // const { route } = head(abc);
+  //   const obj1 = {
+  //       "path": "/outlets",
+  //       "exact": true,
+  //       "permissions": ["admin", "user"],
+  //       "pageTitle": "pageTitle_outlets",
+  //       "breadcrumb": ["/outlets"]
+  //   }
+  // return {
+  //   isLogin: state.app.isLogin,
+  //   user: state.app.user,
+  //   route,
+  //   notices: state.app.notices,
+  //   notification: state.app.notification,
+  // };
 };
 
 const mapDispatchToProps = {
@@ -305,4 +303,4 @@ BasicLayout.defaultProps = defaultProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(injectIntl(BasicLayout));
+)(BasicLayout);

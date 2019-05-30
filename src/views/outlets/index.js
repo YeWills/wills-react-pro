@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import map from 'lodash/map';
-import action from './action';
+// import action from './action';
 import './index.scss';
 
 //Outlets Management 页面
@@ -62,7 +62,8 @@ const mapStateToProps = state => {
   return ({outlets: state.outlets.outlets,});
 };
 
-const mapDispatchToProps = {getOutlets: action.getOutlets,};
+// const mapDispatchToProps = {getOutlets: action.getOutlets,};
+const mapDispatchToProps = {};
 
 Outlets.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(Outlets);
