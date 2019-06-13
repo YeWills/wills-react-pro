@@ -1,7 +1,7 @@
-## wills-react-pro v0.01
+## wills-react-pro v0.02
 
 ### 版本介绍
-此版本是一个最简单的工程配置版本，指包含一个简单界面和项目最基本的html js css webpack处理。
+此版本是一个简单的登陆页面。
 
 ### 如何开始从0启动一个webpack项目
 #### 注重 webpack 入口 ：
