@@ -1,0 +1,57 @@
+@import 'styles/helpers';
+
+.view-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 112px 0 24px 0;
+  &-loginPanel {
+    display: flex;
+    flex-direction: column;
+  }
+  &-appInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+  }
+  &-appLogo {
+    height: 40px;
+    margin-right: 16px;
+  }
+  &-appName {
+    font-size: 32px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  &-appDesc {
+    margin: 12px 0 40px 0;
+    color: $font-color-secondary;
+    text-align: center;
+  }
+  &-loginInput {
+    height: 40px;
+    margin-bottom: 24px;
+  }
+  &-loginBtn {
+    height: 40px;
+  }
+  &-intlSwitch {
+    margin-top: 40px;
+  }
+  &-intlItem {
+    cursor: pointer;
+    &-active {
+      color: $blue-5;
+    }
+  }
+  &-intlSwitchSeparator {
+    margin: 0 12px;
+  }
+  &-errorMsg {
+    text-align: center;
+    margin-top: 12px;
+    color: $red-6;
+  }
+}
