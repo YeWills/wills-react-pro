@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Router from './router';
+import Router from './Router';
 
 const createApp = (store, history) => (
   <Provider store={store}>
