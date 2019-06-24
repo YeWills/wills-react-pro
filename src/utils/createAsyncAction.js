@@ -1,7 +1,14 @@
-function createAsyncAction(name, callback, meta = {}) {
+
+const handlerDispatch = (dispatch, action, withDispatch)=>{
+  withDispatch && dispatch(action);
+}
+
+function createAsyncAction(name, callback, options={}, meta = {}) {
   if (typeof callback !== 'function') {
     throw new Error('[createAsyncAction] callback should be a function');
   }
+  
+  const {successHanlder, errorHandler, withDispatch=true} = options;
 
   return (dispatch) => {
     dispatch({
@@ -18,22 +25,25 @@ function createAsyncAction(name, callback, meta = {}) {
             type: `${name}_SUCCESS`,
             payload: value,
           };
-
-          dispatch(action);
+          successHanlder && successHanlder(value)
+          handlerDispatch(dispatch, action, withDispatch);
           return action;
         })
         .catch((err) => {
+          console.error('axios error : ', err);
+          errorHandler && errorHandler(err);
           const action = {
             meta,
             type: `${name}_ERROR`,
             payload: err,
             error: true,
           };
-
-          dispatch(action);
+          handlerDispatch(dispatch, action, withDispatch);
           return action;
         });
     } catch (err) {
+      console.error('js error : ', err);
+      errorHandler && errorHandler(err);
       const action = {
         meta,
         type: `${name}_ERROR`,
@@ -41,7 +51,7 @@ function createAsyncAction(name, callback, meta = {}) {
         error: true,
       };
 
-      dispatch(action);
+      handlerDispatch(dispatch, action, withDispatch);
       return Promise.resolve(action);
     }
   };

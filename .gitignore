@@ -1,6 +1,7 @@
 node_modules/
 build/
 stats/
+db/
 coverage/
 npm-debug.log
 yarn-error.log
@@ -14,3 +15,5 @@ dist
 .idea
 .svn
 yarn.lock
+
+db/db.json

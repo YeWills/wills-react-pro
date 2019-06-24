@@ -1,37 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { withRouter } from 'react-router-dom';
-// import { injectIntl } from 'react-intl-context';
-import { injectIntl } from 'src-intl-context';
-import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
+import Cookie from 'js-cookie';
 import { Input, Icon, Button } from 'antd';
-import appAction from 'app/action';
+import loginAction from './redux/loginAction';
 import logo from 'assets/logo.svg';
 import './index.scss';
 import {messages,buildConfig, } from '../../app/config/buildConfig';
+import connectWills from '../../utils/connectWills';
 
 const propTypes = {
   prefixCls: PropTypes.string,
-  intl: PropTypes.object.isRequired,
-  errorMsg: PropTypes.string.isRequired,
-  isLogin: PropTypes.bool.isRequired,
-  loginUser: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  intl: PropTypes.object,
+  errorMsg: PropTypes.string,
+  isLogin: PropTypes.bool,
+  loginUser: PropTypes.func,
+  history: PropTypes.object,
 };
 
 const defaultProps = {
   prefixCls: 'view-login',
 };
-class Login extends Component {
+
+const componentName = 'app';
+
+@connectWills(componentName, loginAction, {isInjectIntl:true, iswithRouter:true})
+export default class Login extends Component {
   state = {
     username: '',
     password: '',
   };
 
   componentDidMount() {
-    const { isLogin, history } = this.props;
+    const { history } = this.props;
+    const { isLogin } = this.props[componentName];
+    
     if (isLogin) {
       //实现页面跳转，参考：https://segmentfault.com/a/1190000011137828
       history.push('/');
@@ -39,7 +43,8 @@ class Login extends Component {
   }
 
   componentDidUpdate() {
-    const { isLogin, history } = this.props;
+    const { history } = this.props;
+    const { isLogin } = this.props[componentName];
     if (isLogin) {
       history.push('/');
     }
@@ -49,11 +54,19 @@ class Login extends Component {
     this.setState({ [key]: e.target.value });
   }
 
-
   handleLogin = () => {
-    const { loginUser } = this.props;
+    const { post } = this.props.appAction;
     const { username, password } = this.state;
-    loginUser(username, password);
+    post('APP_LOGIN', { username, password }, {
+      successHanlder: res=>{
+        Cookie.set('user', JSON.stringify(res));
+        post('notices');
+      },
+      errorHandler: err=>{
+        console.error(err);
+        this.props.appAction.resetLoginErrorMsg()
+      }
+    })
   }
 
   updateLocale = (locale) => {
@@ -165,6 +178,8 @@ class Login extends Component {
 
   render() {
     const { prefixCls } = this.props;
+    console.log(this.props)
+    console.log(this.props.appAction)
     return (
       <div className={prefixCls}>
         {this.renderLoginPanel()}
@@ -174,16 +189,6 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isLogin: state.app.isLogin,
-  errorMsg: state.app.loginErrorMsg,
-});
-
-//查看connect源码，mapDispatchToProps 一般接收函数，但也可以接收对象，并在对象中传递dispatch，
-//当mapDispatchToProps为对象时，执行 this.props.loginUser() 会执行 appAction.loginUser()() ,主意哦，是两次()()！！
-const mapDispatchToProps = {
-  loginUser: appAction.loginUser,
-};
 
 const Acv = ({aaa})=>{
   return (<div>{aaa}</div>)
@@ -191,9 +196,4 @@ const Acv = ({aaa})=>{
 Acv.defaultProps={aaa:999889}
 
 Login.propTypes = propTypes;
-//defaultProps 定义Login的默认props属性
 Login.defaultProps = defaultProps;
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withRouter(injectIntl(Login)));

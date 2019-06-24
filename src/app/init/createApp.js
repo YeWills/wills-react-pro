@@ -8,4 +8,5 @@ const createApp = (store, history) => (
   </Provider>
 );
 
+
 export default createApp;

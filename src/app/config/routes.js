@@ -1,5 +1,5 @@
 
-import Login from 'views/login';
+import Login from 'views/login/Login';
 import Outlets from 'views/outlets';//Outlets Management 页面
 import OutletDetail from 'views/outletDetail'; //Outlets Management 页面 点击进入的详情页面
 import W11orkInProgress from 'views/workInProgress'; //Dashboard（仪表盘）点击进入后的页面

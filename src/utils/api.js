@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { buildConfig } from 'app/config/buildConfig';
+import { buildConfig } from '../app/config/buildConfig';
 
 const defaultHeader = {
 
