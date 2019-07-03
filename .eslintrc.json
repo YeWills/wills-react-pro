@@ -13,7 +13,15 @@
     "react/prefer-stateless-function": 0,
     "react/forbid-prop-types": [0],
     "import/extensions": [1, { "js": "never", "json": "never" }],
-    "import/no-extraneous-dependencies": [0]
+    "import/no-extraneous-dependencies": [0],
+    "comma-dangle": ["error", {
+      "arrays": "ignore",
+      "objects": "ignore",
+      "imports": "ignore",
+      "exports": "ignore",
+      "functions": "ignore"
+  }],
+  "react/destructuring-assignment": [0]
   },
   "settings": {
     "import/resolver": {
