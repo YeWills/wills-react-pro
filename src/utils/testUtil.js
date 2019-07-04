@@ -1,20 +1,23 @@
-import * as enzyme from 'enzyme';
+import { shallow as enzymeShallow } from 'enzyme';
 import React from 'react';
 
-const { shallow: enzymeShallow } = enzyme;
-
 const getComponentFromHoc = warp => (warp.type && warp.type.WrappedComponent
-  // eslint-disable-next-line react/react-in-jsx-scope
   ? <warp.type.WrappedComponent {...warp.props} /> : warp);
 
-const shallow = warp => enzymeShallow(getComponentFromHoc(warp));
+export const shallow = warp => enzymeShallow(getComponentFromHoc(warp));
 
-export default {
-  store: {
-    getState: () => {},
-    subscribe: () => {},
-    dispatch: () => {},
-    replaceReducer: () => {},
-  },
-  shallow,
+export const testPost = res => (url, data, options = {}) => {
+  const { successHanlder, errorHandler } = options;
+  if (res.success) {
+    successHanlder && successHanlder(res);
+  } else {
+    errorHandler && errorHandler(res);
+  }
+};
+
+export const store = {
+  getState: () => {},
+  subscribe: () => {},
+  dispatch: () => {},
+  replaceReducer: () => {},
 };
