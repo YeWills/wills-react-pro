@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { injectIntl } from 'src-intl-context';
@@ -20,17 +19,17 @@ export default function connectWills(name, actions, options = {}) {
     }
 
     const mapStateToProps = state => ({
-      [name]: state && state[name] || {},
+      [name]: (state && state[name]) || {},
     });
 
     const commonActionCreator = {
-      get: (urlName, params, options = {}) => {
+      get: (urlName, params) => {
         return createAsyncAction(urlName, () => api.get(urls[urlName], params), options);
       },
-      post: (urlName, params, options = {}) => {
+      post: (urlName, params) => {
         return createAsyncAction(urlName, () => api.post(urls[urlName], params), options);
       },
-      delete: (urlName, params, options = {}) => createAsyncAction(urlName, () => api.delete(urls[urlName], params), options),
+      delete: (urlName, params) => createAsyncAction(urlName, () => api.delete(urls[urlName], params), options),
     };
 
     const mapDispatchToProps = dispatch => ({
