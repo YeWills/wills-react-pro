@@ -30,8 +30,7 @@ module.exports = {
   context: SOURCE_DIR,
   entry: [
     'babel-polyfill',
-    // 'react-hot-loader/patch',
-    // 'webpack-hot-middleware/client?reload=true',
+    'react-hot-loader/patch',
     path.resolve(__dirname, 'src/index')
   ],
   output: {
@@ -52,9 +51,9 @@ module.exports = {
     },
   },
   resolve: {
-    // alias: {
-    //   'react-dom': '@hot-loader/react-dom'
-    // },
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    },
     extensions: ['.js', '.jsx', '.json'],
   },
   module: {
@@ -164,7 +163,6 @@ module.exports = {
       'process.env.BUILD_CONFIG': JSON.stringify(config),
       'process.env.BUILD_LOCALE_MESSAGES': JSON.stringify(localeMessages),
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: 'assets/css/style.[hash:8].css',
       chunkFilename: 'assets/css/[id].[hash:8].css',
@@ -177,11 +175,13 @@ module.exports = {
       filename: './index.html',
       template: './index.ejs',
     }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devtool: IS_PROD ? 'source-map' : 'eval-source-map',
   devServer: {
     port: process.env.PORT || 8089,
     host: 'localhost',
+    hot: true,
     publicPath: '/',
     contentBase: SOURCE_DIR,
     historyApiFallback: true,

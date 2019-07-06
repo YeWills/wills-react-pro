@@ -17,5 +17,5 @@ const createApp = () => {
 };
 
 
-export default (createApp);
-// export default hot(module)(createApp);
+// export default (createApp);
+export default hot(module)(createApp);
