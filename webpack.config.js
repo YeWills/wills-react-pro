@@ -28,9 +28,11 @@ module.exports = {
   mode: ENV,
   target: 'web',
   context: SOURCE_DIR,
-  entry: {
-    client: './index.js',
-  },
+  entry: [
+    'babel-polyfill',
+    'react-hot-loader/patch',
+    path.resolve(__dirname, 'src/index')
+  ],
   output: {
     path: CLIENT_DIR,
     // publicPath: ASSET_PATH,
@@ -49,6 +51,9 @@ module.exports = {
     },
   },
   resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    },
     extensions: ['.js', '.jsx', '.json'],
   },
   module: {

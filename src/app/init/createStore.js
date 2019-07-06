@@ -4,6 +4,7 @@ import { createStore, combineReducers, applyMiddleware, compose, } from 'redux';
 //connected-react-router用这个的主要原因在于 这个路由很好的兼容了redux 的 reducer，
 //所以用到redux的时候，可以用这个路由connected-react-router
 import { connectRouter, routerMiddleware } from 'connected-react-router';
+import createBrowserHistory from 'history/createBrowserHistory';
 import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 
@@ -17,7 +18,8 @@ import reducers from './reducers';
  * https://www.npmjs.com/package/connected-react-router
   * */
 
-function createAppStore(history, preloadedState = {}) {
+function createAppStore(preloadedState = {}) {
+  const history = createBrowserHistory();
   // enhancers
   let composeEnhancers = compose;
 
@@ -44,4 +46,4 @@ function createAppStore(history, preloadedState = {}) {
   };
 }
 
-export default createAppStore;
+export default createAppStore();
