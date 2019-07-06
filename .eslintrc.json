@@ -23,6 +23,7 @@
   }],
   "react/destructuring-assignment": [0],
   "arrow-body-style": [0],
+  "import/no-unresolved": [0],
   "max-len": ["error", { "code": 120 }],
   "no-unused-expressions": [0]
   },

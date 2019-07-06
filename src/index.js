@@ -1,7 +1,8 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import 'antd/dist/antd.css';
-import { createStore, createApp, initClient } from './app';
+import { createStore, createApp as App, initClient } from './app';
 
 // src\index.js-1
 // src\app\index.js-2
@@ -19,10 +20,10 @@ import { createStore, createApp, initClient } from './app';
 // 这里history单独拎出来，并且使用connected-react-router主要原因是为了 让路由与redux同步，可以调试redux-devtools工具
 // 如果想用redux-tool调试工具，完全可以使用其他的react-router-dom 的BrowserRouter代替ConnectedRouter
 
-const { store, history } = createStore(createBrowserHistory(), {});
-const application = createApp(store, history);
+// const { store, history } = createStore(createBrowserHistory(), {});
+// const application = createApp(store, history);
 
 //这里用来做cookie缓存，验证是否登陆的
-initClient(store.dispatch);
+// initClient(store.dispatch);
 
-ReactDOM.render(application, window.document.getElementById('app'));
+ReactDOM.render(<App />, window.document.getElementById('app'));
