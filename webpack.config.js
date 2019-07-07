@@ -175,13 +175,11 @@ module.exports = {
       filename: './index.html',
       template: './index.ejs',
     }),
-    new webpack.HotModuleReplacementPlugin()
   ],
   devtool: IS_PROD ? 'source-map' : 'eval-source-map',
   devServer: {
     port: process.env.PORT || 8089,
     host: 'localhost',
-    hot: true,
     publicPath: '/',
     contentBase: SOURCE_DIR,
     historyApiFallback: true,

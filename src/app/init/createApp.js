@@ -1,21 +1,31 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import createBrowserHistory from 'history/createBrowserHistory';
-import Router from './Router';
-import createStore from './createStore';
 
 
-const { store, history } = createStore(createBrowserHistory(), {});
+class Router extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      num: 1
+    };
+  }
 
-const createApp = () => {
-  return (
-    <Provider store={store}>
-      <Router history={history} />
-    </Provider>
-  );
-};
+  setNum =() => {
+    const { num } = this.state;
+    this.setState({ num: num + 1 });
+  }
 
+  render() {
+    const { num } = this.state;
+    return (
+      <div>
+        <div key="1">{num}</div>
+        <div key="11" onClick={this.setNum}>click1256623383337</div>
+        <div key="122">TTT1</div>
+      </div>
+    );
+  }
+}
 
-// export default (createApp);
-export default hot(module)(createApp);
+// export default (Router);
+export default hot(module)(Router);
