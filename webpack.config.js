@@ -14,9 +14,6 @@ const BUILD_DOMAIN = process.env.BUILD_DOMAIN || 'localhost';
 const VERSION = `v${pkg.version}`;
 const IS_PROD = ENV === 'production';
 
-
-
-
 const SOURCE_DIR = path.resolve(__dirname, 'src');
 const OUTPUT_DIR = path.resolve(__dirname, 'build');
 const CLIENT_DIR = path.join(OUTPUT_DIR, VERSION);

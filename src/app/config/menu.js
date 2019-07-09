@@ -1,7 +1,3 @@
-//定义侧边栏菜单的目录:
-//分为三大模块：dashboard、outlets、exception
-//对以上三大模块配置子目录
-//每个菜单主要配置属性，icon\name\path\children (图标、名字、路径、子目录)
 const menuData = [{
   name: 'siderMenu_dashboard',
   icon: 'dashboard',

@@ -1,14 +1,14 @@
 
-const handlerDispatch = (dispatch, action, withDispatch)=>{
+const handlerDispatch = (dispatch, action, withDispatch) => {
   withDispatch && dispatch(action);
-}
+};
 
-function createAsyncAction(name, callback, options={}, meta = {}) {
+function createAsyncAction(name, callback, options = {}, meta = {}) {
   if (typeof callback !== 'function') {
     throw new Error('[createAsyncAction] callback should be a function');
   }
-  
-  const {successHanlder, errorHandler, withDispatch=true} = options;
+
+  const { successHanlder, errorHandler, withDispatch = true } = options;
 
   return (dispatch) => {
     dispatch({
@@ -25,7 +25,7 @@ function createAsyncAction(name, callback, options={}, meta = {}) {
             type: `${name}_SUCCESS`,
             payload: value,
           };
-          successHanlder && successHanlder(value)
+          successHanlder && successHanlder(value);
           handlerDispatch(dispatch, action, withDispatch);
           return action;
         })

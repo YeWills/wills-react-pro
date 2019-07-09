@@ -1,5 +1,3 @@
-//这里增加了登陆接口的配置，
-//登录接口为post请求的 ip地址为：http://localhost:3000/login ，data参数：{"username":"admin","password":"123"}
 const adminJson = {
   id: 1,
   name: 'Admin',

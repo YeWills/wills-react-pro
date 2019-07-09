@@ -29,164 +29,165 @@ import urlToList from './utils/urlToList';
 const { SubMenu } = Menu;
 
 const propTypes = {
-    prefixCls: PropTypes.string,
-    className: PropTypes.string,
-    style: PropTypes.object,
-    appName: PropTypes.string,
-    appLogo: PropTypes.string,
-    appBaseUrl: PropTypes.string,
-    width: PropTypes.number,
-    menuData: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string,
-        path: PropTypes.string,
-        icon: PropTypes.string,
-        children: PropTypes.array,
-    })),
-    pathname: PropTypes.string,
+  prefixCls: PropTypes.string,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  appName: PropTypes.string,
+  appLogo: PropTypes.string,
+  appBaseUrl: PropTypes.string,
+  width: PropTypes.number,
+  menuData: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    path: PropTypes.string,
+    icon: PropTypes.string,
+    children: PropTypes.array,
+  })),
+  pathname: PropTypes.string,
 };
 
 const defaultProps = {
-    prefixCls: 'react-sider',
-    className: '',
-    style: {},
-    appName: '',
-    appLogo: '',
-    appBaseUrl: '/',
-    width: 256,
-    menuData: [],
-    pathname: '/',
+  prefixCls: 'react-sider',
+  className: '',
+  style: {},
+  appName: '',
+  appLogo: '',
+  appBaseUrl: '/',
+  width: 256,
+  menuData: [],
+  pathname: '/',
 };
 
 class Sider extends Component {
-    constructor(props) {
-        super(props);
-        //memoize只是用做缓存技术的，如果不用的话直接去掉即可。
-        //formatMenuPath的作用是把path:dashboard 改成path:/dashboard
-        this.fullPathMenuData = memoize(menuData => {
-            // console.log('fullPathMenuData---memoize1');
-            return formatMenuPath(menuData)
-        });
-
-        //selectedKeys的作用是将 /exception/403 从菜单列表中，返回 ["/exception", "/exception/403"]
-        this.selectedKeys = memoize((pathname, fullPathMenu) => {
-            //getFlatMenuKeys(fullPathMenu)::["/dashboard", "/dashboard/analysis", "/dashboard/analysis/realtime", "/dashboard/analysis/offline", "/dashboard/workplace", "/outlets", "/exception", "/exception/403", "/exception/404"]
-            //urlToList作用：：/exception/403 变成["/exception", "/exception/403"]
-            //getMeunMatchKeys的作用是匹配：：如从全路径中，匹配["/exception", "/exception/403"] 最后返回["/exception", "/exception/403"]
-           return getMeunMatchKeys(getFlatMenuKeys(fullPathMenu), urlToList(pathname))
+  constructor(props) {
+    super(props);
+    //memoize只是用做缓存技术的，如果不用的话直接去掉即可。
+    //formatMenuPath的作用是把path:dashboard 改成path:/dashboard
+    this.fullPathMenuData = memoize((menuData) => {
+      // console.log('fullPathMenuData---memoize1');
+      return formatMenuPath(menuData);
     });
-        this.handleOpenChange = this.handleOpenChange.bind(this);
-        const { pathname, menuData } = props;
 
-        this.state = {
-            openKeys: this.selectedKeys(pathname, this.fullPathMenuData(menuData)),
-        };
-    }
+    //selectedKeys的作用是将 /exception/403 从菜单列表中，返回 ["/exception", "/exception/403"]
+    this.selectedKeys = memoize((pathname, fullPathMenu) => {
+      //getFlatMenuKeys(fullPathMenu)::["/dashboard", "/dashboard/analysis", "/dashboard/analysis/realtime", "/dashboard/analysis/offline", "/dashboard/workplace", "/outlets", "/exception", "/exception/403", "/exception/404"]
+      //urlToList作用：：/exception/403 变成["/exception", "/exception/403"]
+      //getMeunMatchKeys的作用是匹配：：如从全路径中，匹配["/exception", "/exception/403"] 最后返回["/exception", "/exception/403"]
+      return getMeunMatchKeys(getFlatMenuKeys(fullPathMenu), urlToList(pathname));
+    });
+    this.handleOpenChange = this.handleOpenChange.bind(this);
+    const { pathname, menuData } = props;
 
-    handleOpenChange(openKeys){
-        this.setState({
-            openKeys,
-        });
-    }
+    this.state = {
+      openKeys: this.selectedKeys(pathname, this.fullPathMenuData(menuData)),
+    };
+  }
 
-    renderMenu(data){
-       return map(data, (item) => {
-            if (item.children) {
-                return (
-                    <SubMenu
-                        key={item.path}
-                        title={
-                            <span>
-                                <Icon type={item.icon}/>
-                                <span>{item.name}</span>
-                              </span>
-                        }>
-                        {this.renderMenu(item.children)}
-                    </SubMenu>
-                );
-            }
-            return (
-                <Menu.Item key={item.path}>
-                    <Link to={item.path} href={item.path}>
-                        <Icon type={item.icon}/>
-                        <span>{item.name}</span>
-                    </Link>
-                </Menu.Item>
-            );
-        })
-    }
+  handleOpenChange(openKeys) {
+    this.setState({
+      openKeys,
+    });
+  }
 
-    renderSiderHeader(){
-        const {
-            appBaseUrl,
-            prefixCls,
-            appLogo,
-            appName,
-        } = this.props;
-
+  renderMenu(data) {
+    return map(data, (item) => {
+      if (item.children) {
         return (
-            <Link to={appBaseUrl} href={appBaseUrl}>
-                <div className={`${prefixCls}-header`}>
-                    <img
-                        className={`${prefixCls}-logo`}
-                        src={appLogo}
-                        alt="logo"
-                    />
-                    <div className={`${prefixCls}-appName`}>
-                        {appName}
-                    </div>
-                </div>
-            </Link>
+          <SubMenu
+            key={item.path}
+            title={(
+              <span>
+                <Icon type={item.icon} />
+                <span>{item.name}</span>
+              </span>
+)}
+          >
+            {this.renderMenu(item.children)}
+          </SubMenu>
         );
-    }
+      }
+      return (
+        <Menu.Item key={item.path}>
+          <Link to={item.path} href={item.path}>
+            <Icon type={item.icon} />
+            <span>{item.name}</span>
+          </Link>
+        </Menu.Item>
+      );
+    });
+  }
 
-    renderSiderBody(){
-        const { prefixCls, pathname, menuData } = this.props;
-        const { openKeys } = this.state;
-        const abc = this.selectedKeys(pathname, this.fullPathMenuData(menuData));
-        //openKeys 当前展开的 SubMenu 菜单项 key 数组
-        //selectedKeys 当前选中的菜单项 key 数组
-        //要做一个，点击子集菜单后，关闭其他父级菜单，那么就必须设置openKeys和onOpenChange
-        //要做到选中的子集菜单，高亮显示，则必须要设置selectedKeys，且要获取到父级、子级菜单path的数组；
-        //经过试验，selectedKeys目前是[/dashboard,/dashboard/analysis,/dashboard/analysis/realtime];
-        //其实也可以是[/dashboard/analysis/realtime]
+  renderSiderHeader() {
+    const {
+      appBaseUrl,
+      prefixCls,
+      appLogo,
+      appName,
+    } = this.props;
 
-        return (
-            <div className={`${prefixCls}-body`}>
-                <Menu
-                    style={{padding: '16px 0', width: '100%'}}
-                    mode="inline"
-                    theme="dark"
-                    openKeys={openKeys}
-                    selectedKeys={abc}
-                    onOpenChange={this.handleOpenChange}
-                >
-                    {this.renderMenu(this.fullPathMenuData(menuData))}
-                </Menu>
-            </div>
-        );
-    }
+    return (
+      <Link to={appBaseUrl} href={appBaseUrl}>
+        <div className={`${prefixCls}-header`}>
+          <img
+            className={`${prefixCls}-logo`}
+            src={appLogo}
+            alt="logo"
+          />
+          <div className={`${prefixCls}-appName`}>
+            {appName}
+          </div>
+        </div>
+      </Link>
+    );
+  }
 
-    render() {
-        const {
-            prefixCls,
-            className,
-            style,
-            width,
-        } = this.props;
+  renderSiderBody() {
+    const { prefixCls, pathname, menuData } = this.props;
+    const { openKeys } = this.state;
+    const abc = this.selectedKeys(pathname, this.fullPathMenuData(menuData));
+    //openKeys 当前展开的 SubMenu 菜单项 key 数组
+    //selectedKeys 当前选中的菜单项 key 数组
+    //要做一个，点击子集菜单后，关闭其他父级菜单，那么就必须设置openKeys和onOpenChange
+    //要做到选中的子集菜单，高亮显示，则必须要设置selectedKeys，且要获取到父级、子级菜单path的数组；
+    //经过试验，selectedKeys目前是[/dashboard,/dashboard/analysis,/dashboard/analysis/realtime];
+    //其实也可以是[/dashboard/analysis/realtime]
 
-        const classes = `${prefixCls} ${className}`;
-        const styles = {
-            ...style,
-            width,
-        };
+    return (
+      <div className={`${prefixCls}-body`}>
+        <Menu
+          style={{ padding: '16px 0', width: '100%' }}
+          mode="inline"
+          theme="dark"
+          openKeys={openKeys}
+          selectedKeys={abc}
+          onOpenChange={this.handleOpenChange}
+        >
+          {this.renderMenu(this.fullPathMenuData(menuData))}
+        </Menu>
+      </div>
+    );
+  }
 
-        return (
-            <div className={classes} style={styles}>
-                {this.renderSiderHeader()}
-                {this.renderSiderBody()}
-            </div>
-        );
-    }
+  render() {
+    const {
+      prefixCls,
+      className,
+      style,
+      width,
+    } = this.props;
+
+    const classes = `${prefixCls} ${className}`;
+    const styles = {
+      ...style,
+      width,
+    };
+
+    return (
+      <div className={classes} style={styles}>
+        {this.renderSiderHeader()}
+        {this.renderSiderBody()}
+      </div>
+    );
+  }
 }
 Sider.propTypes = propTypes;
 Sider.defaultProps = defaultProps;

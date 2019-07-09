@@ -39,20 +39,20 @@ const resetLoginErrorMsg = () => ({
 
 const loginUser = (username, password) => {
   const action = login(username, password);
-  return dispatch => {
+  return (dispatch) => {
     return (
-        action(dispatch)
-            .then((callbackAction) => {
-              if (callbackAction.type === 'APP_LOGIN_SUCCESS') {
-                Cookie.set('user', JSON.stringify(callbackAction.payload));
-                return getNotices()(dispatch);
-              }
-              if (callbackAction.type === 'APP_LOGIN_ERROR') {
-                return setTimeout(() => dispatch(resetLoginErrorMsg()), 1500);
-              }
-              return null;
-            })
-    )
+      action(dispatch)
+        .then((callbackAction) => {
+          if (callbackAction.type === 'APP_LOGIN_SUCCESS') {
+            Cookie.set('user', JSON.stringify(callbackAction.payload));
+            return getNotices()(dispatch);
+          }
+          if (callbackAction.type === 'APP_LOGIN_ERROR') {
+            return setTimeout(() => dispatch(resetLoginErrorMsg()), 1500);
+          }
+          return null;
+        })
+    );
   };
 };
 

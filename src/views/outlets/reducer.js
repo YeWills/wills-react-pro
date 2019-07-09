@@ -5,11 +5,10 @@ const defaultState = () => ({
 });
 
 const getSuccess = (state, action) => {
-  console.log(state);
   return ({
-      ...state,
-      outlets: action.payload,
-  })
+    ...state,
+    outlets: action.payload,
+  });
 };
 
 export default createReducer(defaultState, {

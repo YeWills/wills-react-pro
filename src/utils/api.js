@@ -37,14 +37,12 @@ const api = () => {
       };
     },
     get: (url, query) => {
-      // console.log(`axios get url${url}`);
       return opt.instance.get(url, {
         params: query,
-      }).then(standardResponse)
+      }).then(standardResponse);
     },
     post: (url, data) => {
-      console.log(`axios post url:::${url}${JSON.stringify(data)}`);
-     return opt.instance.post(url, data).then(standardResponse)
+      return opt.instance.post(url, data).then(standardResponse);
     },
     delete: url => (
       opt.instance.delete(url).then(standardResponse)

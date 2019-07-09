@@ -23,7 +23,7 @@ class Outlets extends Component {
   }
 
   renderOutlets = () => {
-      //outlets 是 mapStateToProps 是本组件的 mapDispatchToProps 中的，this.props.getOutlets dispatch来的
+  //outlets 是 mapStateToProps 是本组件的 mapDispatchToProps 中的，this.props.getOutlets dispatch来的
     const { outlets } = this.props;
     return (
       <div className="view-outlets-outlets">
@@ -58,11 +58,11 @@ class Outlets extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return ({outlets: state.outlets.outlets,});
+const mapStateToProps = (state) => {
+  return ({ outlets: state.outlets.outlets,  });
 };
 
-const mapDispatchToProps = {getOutlets: action.getOutlets,};
+const mapDispatchToProps = { getOutlets: action.getOutlets,  };
 
 Outlets.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(Outlets);

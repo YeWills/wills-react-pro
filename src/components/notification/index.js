@@ -30,7 +30,6 @@ class Notification extends Component {
   }
 
   render() {
-    alert(2)
     const {
       prefixCls,
       title,
