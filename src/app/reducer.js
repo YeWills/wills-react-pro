@@ -2,6 +2,7 @@ import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
   isLogin: false,
+  // isLogin: true,
   user: {},
   loginErrorMsg: '',
   notices: [],

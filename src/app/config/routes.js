@@ -1,6 +1,7 @@
 
 import Login from 'views/login/Login';
 import Outlets from 'views/outlets';//Outlets Management 页面
+import Test from 'views/Test';//Outlets Management 页面
 import OutletDetail from 'views/outletDetail'; //Outlets Management 页面 点击进入的详情页面
 import W11orkInProgress from 'views/workInProgress'; //Dashboard（仪表盘）点击进入后的页面
 import Unauthorized from 'views/unauthorized';//403或404页面
@@ -49,6 +50,12 @@ const authorizedRoutes = [{
   exact: true,
   permissions: ['god'],
   component: W11orkInProgress,
+  unauthorized: Unauthorized,
+}, {
+  path: '/test',
+  exact: true,
+  // permissions: ['admin', 'user'],
+  component: Test,
   unauthorized: Unauthorized,
 }];
 

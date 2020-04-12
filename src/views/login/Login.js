@@ -44,8 +44,8 @@ const defaultProps = {
 @connectWills('app', loginAction, { isInjectIntl: true, iswithRouter: true })
 export default class Login extends Component {
   state = {
-    username: '',
-    password: '',
+    username: 'admin',
+    password: '123',
   };
 
   componentDidMount() {

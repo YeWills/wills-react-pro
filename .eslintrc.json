@@ -3,7 +3,8 @@
   "extends": "airbnb",
   "plugins": [
     "react",
-    "import"
+    "import",
+    "react-hooks"
   ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
@@ -29,7 +30,8 @@
   "object-curly-newline": [0],
   "import/no-unresolved": [0],
   "max-len": ["error", { "code": 120 }],
-  "no-unused-expressions": [0]
+  "no-unused-expressions": [0],
+  "react-hooks/rules-of-hooks": "error"
   },
   "settings": {
     "import/resolver": {

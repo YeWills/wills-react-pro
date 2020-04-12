@@ -13,10 +13,14 @@ react16.4 + redux + redux-thunk + webpack4 + react-hot-loader + jest + enzyme
 - 路由设计
 - jest + enzyme
 
+## 实现功能
+- 热更新（需要运行 npm run dev 启动，如果使用npm start启动 不具有此功能）
+
 ## Usage
 ```
 $ npm install
-$ npm start
+$ npm start //方式一
+$ npm run dev ； npm run mock:server //方式二 可使用热更新
 ```
 
 ## Login Credentials
@@ -25,4 +29,20 @@ $ npm start
 
 ## 项目搭建博客
 [wills-react-pro项目笔记](https://yewills.github.io/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B/)
+
+## FAQ
+### 去掉登录验证
+修改这里：
+```
+/Users/js/Desktop/work/git/wills-react-pro/src/app/reducer.js
+isLogin 设置为 true
+```
+### 增加页面
+设置如下页面：
+```
+src/app/config/menu.js
+src/app/config/routes.js
+src/i18n/locale.json
+```
+
 

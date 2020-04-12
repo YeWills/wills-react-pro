@@ -32,6 +32,10 @@ const menuData = [{
     name: 'siderMenu_404',
     path: '404',
   }],
+}, {
+  name: 'test',
+  icon: 'shop',
+  path: 'test',
 }];
 
 export default menuData;
