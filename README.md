@@ -20,6 +20,8 @@ react16.4 + redux + redux-thunk + webpack4 + react-hot-loader + jest + enzyme
 $ npm install
 $ npm start //方式一
 $ npm run dev ； npm run mock:server //方式二 可使用热更新
+
+浏览器运行： http://127.0.0.1:8089
 ```
 
 ## Login Credentials

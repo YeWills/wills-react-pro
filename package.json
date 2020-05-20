@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
+    "@react-hero/form": "^0.1.0",
     "add": "^2.0.6",
     "antd": "^3.7.1",
     "axios": "^0.18.0",
