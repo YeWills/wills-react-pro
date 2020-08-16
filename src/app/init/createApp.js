@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { hot } from 'react-hot-loader';
-import Router from './Router';
+import Router from './router';
 import storeAndHistory from './createStore';
 
 const { store, history } = storeAndHistory;
